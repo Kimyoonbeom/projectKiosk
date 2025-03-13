@@ -98,7 +98,7 @@ public class Kiosk {
 
                                 String addInput = scanner.nextLine();
 
-                                if (addInput.equals("1")) {
+                                if (addInput.equals("1")) { // 장바구니 추가.
                                     shoppingCart.addShoppingList(new ShoppingList(selectedItem));
                                     System.out.println(selectedItem.getName() + " 이 장바구니에 추가되었습니다.\n");
                                 } else {
