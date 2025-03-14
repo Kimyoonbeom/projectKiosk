@@ -149,8 +149,9 @@ public class Kiosk {
                             default:
                                 System.out.println("유효하지 않은 선택입니다. 기본적으로 0% 할인 적용됩니다.");
                         }
-
+                        // 할인률 계산.
                         double discountedCost = totalCost * (1 - discountRate);
+
                         shoppingCart.clearShoppinglist();
                         System.out.printf("주문이 완료되었습니다. 금액은 W %.1f 입니다.\n\n", discountedCost);
                     } else if (orderInput.equals("2")) { // 메뉴판으로 돌아가기
@@ -176,11 +177,20 @@ public class Kiosk {
                     }
 
                     try {
-                        int cancelIndex = Integer.parseInt(cancelInput) - 1; // 입력받은 값을 정수로 변환
+                        int cancelIndex = Integer.parseInt(cancelInput); // 입력받은 값을 정수로 변환
 
                         if (cancelIndex >= 0 && cancelIndex < shoppingCart.getShoppingLists().size()) {
-                            shoppingCart.getShoppingLists().remove(cancelIndex);
-                            System.out.println("주문이 취소되었습니다.\n");
+                            String keyToRemove = shoppingCart.getShoppingLists().keySet().stream().
+                                    skip(cancelIndex - 1)
+                                    .findFirst()
+                                    .orElse(null);
+                            // 해당키로 항목을 제거.
+                            if (keyToRemove != null) {
+                                shoppingCart.removeItem(keyToRemove);
+                                System.out.println("주문이 취소되었습니다.\n");
+                            } else {
+                                System.out.println("유효하지 않은 선택입니다. 다시 입력해주세요.\n");
+                            }
                         } else {
                             System.out.println("유효하지 않은 선택입니다. 다시 입력해주세요.\n");
                         }
@@ -190,7 +200,7 @@ public class Kiosk {
                 } else {
                     System.out.println("유효하지 않은 선택입니다. 다시 입력해주세요.\n");
                 }
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException e){
                 System.out.println("잘못된 입력입니다. 숫자를 입력해주세요.\n");
             }
         }
