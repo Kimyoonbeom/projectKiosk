@@ -3,6 +3,7 @@ package KioskChallenge2;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Map;
 
 public class Kiosk {
     private List<Menu> menus; // 여러 메뉴 카테고리

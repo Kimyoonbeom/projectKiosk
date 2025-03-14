@@ -13,9 +13,9 @@ public class ShoppingCart {
     }
 
     // 장바구니 아이템 리스트 변환
-    //public List<ShoppingList> getShoppingLists(){
-    //return shoppingLists;
-    // }
+    public Map<String, ShoppingList> getShoppingLists(){
+        return shoppingLists;
+    }
 
     // 장바구니 물건 추가하기.
     public void addShoppingList(ShoppingList list){
@@ -30,6 +30,7 @@ public class ShoppingCart {
             shoppingLists.put(menuItemName, list);
         }
     }
+
     // 장바구니 물건들 출력.
     public void displayShoppingLists(){
         for (int i = 0; i < shoppingLists.size(); i++){
@@ -61,4 +62,3 @@ public class ShoppingCart {
         shoppingLists.clear();
     }
 }
-// Map 문법이 다르다. list랑은
